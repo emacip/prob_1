@@ -1,0 +1,27 @@
+---
+title: "Practica Variable Aleatoria unidimensional"
+author: "Enrique Macip"
+date: "29 de octubre de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Práctica Variable Aleatoria unidimensional
+Una empresa de servicios de Internet quiere hacer una campaña para aplicar entre un 5% y un 25% de descuento a sus clientes de forma aleatoria y lineal, y entonces la probabilidad de que un cliente reciba un determinado descuento se puede modelizar mediante la siguiente función de densidad:
+
+$$
+f(x) = \begin{cases} k(25-x), & \mbox{if }\ 5 \leq \mbox{ x } \leq \ 25\\0 & \mbox{others}\end{cases}
+$$
+
+
+Responde a las siguientes cuestiones:
+
+1. Calcula k para que f (x) sea realmente una funcion de densidad
+```{r k value, echo=TRUE}
+  k=1/integrate(function(x) 25-x,5,25)$value
+  k
+
+```
