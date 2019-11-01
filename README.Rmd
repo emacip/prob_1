@@ -25,3 +25,25 @@ Responde a las siguientes cuestiones:
   k
 
 ```
+```{r plot density function, echo=FALSE}
+density <- function(x){k*(25-x)}
+x <- seq(5,25)
+y <- density(x)
+plot(x,y,
+    main="Density Function",
+    ylab="f(x)",
+    type="l",
+    col="blue",
+    xlim=c(0,40))
+```   
+
+2. Calcula la probabilidad de que un cliente obtenga mas de un 20% de descuento
+```{r probability 20% discount, echo=TRUE}
+probability <- integrate(function(x) density(x),20,25)$value
+probability
+```
+
+P(X > 20)
+$$
+\int_a^b f(x)dx= \int_a^b 1/200(25-x)dx
+$$
