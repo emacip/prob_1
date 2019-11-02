@@ -45,5 +45,57 @@ probability
 
 P(X > 20)
 $$
-\int_a^b f(x)dx= \int_a^b 1/200(25-x)dx
+\int_{20}^{\infty} f(x)dx= \int_{20}^{\infty} 1/200(25-x)dx
 $$
+3. ¿Cuál es el descuento medio que se espera aplicar?
+$$
+E(x) = \int_{-\infty}^{\infty} xf(x)dx
+$$
+
+```{r expectation value, echo=TRUE}
+  expectation <- integrate( function(x) x*density(x), 5,25)$value
+  expectation
+```
+Descuento medio sera 11,67%
+
+4. Calcula la varianza de la variable aleatoria
+$$
+Var(X) = E(X^2) - (E(X))^2
+$$
+```{r expectation^2 value, echo=TRUE}
+  expectation_x2 <- integrate( function(x) x^2*density(x), 5,25)$value
+  expectation_x2
+```
+
+```{r variance value, echo=TRUE}
+  variance <- expectation_x2 - expectation^2
+  variance
+```
+
+5. ¿Entre qué valores estarán probablemente la mitad de los descuentos realizados (Zona central distribucion)?
+
+```{r dsitribution, echo=TRUE}
+## Distribution function
+distribution <- function(q) integrate(function(x) density(x), 5, q)$value
+
+## Inverse cumulative distribution function
+quantile <- function(p) uniroot(function(x) distribution(x) - p, c(5, 25))
+
+quantile(0.75)
+quantile(0.25)
+```
+
+
+6. ¿Cuál es la moda de la variable aleatoria?
+
+La moda es el maximo valor  de la funcion f(x)
+
+mode = 5
+
+
+7. Calcula la mediana de la variable aleatoria
+
+Usando Inverse cumulative distribution function del punto 5, calculamos la median.
+```{r median, echo=TRUE}
+quantile(0.5)
+```
